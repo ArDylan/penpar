@@ -13,10 +13,9 @@ class LocationController extends Controller
         return view('location.index');
     }
 
-    public function show(Request $request, Location $location)
+    public function show(Location $location)
     {
-        $camera_points = Point::where('location_id', $location->id)->get();
-        return view('location.detail', compact('location', 'camera_points'));
+        return view('location.detail', compact('location'));
     }
 
     public function store(Request $request)
