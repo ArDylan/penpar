@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('point_id')->unsigned();
             $table->foreign('point_id')->references('id')->on('points')->onDelete('cascade');
+            $table->string('note')->nullable();
             $table->string('images');
             $table->timestamps();
         });

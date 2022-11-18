@@ -11,6 +11,7 @@ class PointImage extends Model
     protected $fillable = [
         'point_id',
         'images',
+        'note',
     ];
 
     public function point()
