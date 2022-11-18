@@ -3,6 +3,7 @@
     <div class="flex mb-5">
         <h1 class="text-xl flex-1 font-medium">{{$location->name}}</h1>
         <select wire:model="point" name="point_id" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-36 p-2.5">
+            <option value="*">All</option>
             @foreach ($camera_points as $camera)
                 <option value="{{$camera->id}}">{{$camera->name}}</option>
             @endforeach
@@ -25,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
         @foreach ($images as $image)
         <div class="bg-white shadow rounded">
             <div class="group relative mb-1">
@@ -44,4 +45,5 @@
         </div>
         @endforeach
     </div>
+    {{ $images->links() }}
 </div>
