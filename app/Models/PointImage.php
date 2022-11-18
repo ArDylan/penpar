@@ -10,7 +10,7 @@ class PointImage extends Model
     use HasFactory;
     protected $fillable = [
         'point_id',
-        'image',
+        'images',
     ];
 
     public function point()

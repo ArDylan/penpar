@@ -23,74 +23,49 @@
         @include("layouts.sidebar")
         <div class="w-screen">
             @include('layouts.navbar')
+            <div class="mx-10 mt-10 rounded-lg p-10 bg-white shadow flex">
+                
+                <div href="#" class="flex mx-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
+                    <h5 class="mr-5 tracking-tight text-gray-900"><i class="fa-solid fa-location-dot"></i></h5>
+                    <p class="border-r-2 border-black pr-2 font-normal text-gray-700">Lokasi terpasang</p>
+                    <h5 class="ml-2">{{$location}}</h5>
+                </div>
+                <div href="#" class="flex mx-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
+                    <h5 class="mr-5 tracking-tight text-gray-900"><i class="fa-solid fa-camera"></i></h5>
+                    <p class="border-r-2 border-black pr-2 font-normal text-gray-700">Perangkat Terpasang</p>
+                    <h5 class="ml-2">{{$points->count()}}</h5>
+                </div>
+                <div href="#" class="flex mx-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
+                    <h5 class="mr-5 tracking-tight text-gray-900"><i class="fa-solid fa-square-parking"></i></h5>
+                    <p class="border-r-2 border-black pr-2 font-normal text-gray-700">Pelanggaran Hari ini</p>
+                    <h5 class="ml-2">{{$violation}}</h5>
+                </div>
+
+
+            </div>
             <div class="flex m-5">
                 <div class="flex-1 bg-white shadow p-10 rounded-lg m-5">
                     <div class="flex mb-5">
                         <h1 class="text-xl flex-1 font-medium">Cam Location</h1>
                     </div>
                     
-                    <div id="map" class="h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] rounded-xl drop-shadow-lg" data-aos="zoom-in">
+                    <div id="map" class="h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[60vh] rounded-xl drop-shadow-lg" data-aos="zoom-in">
                         <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index: -99;">
                         <img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo">
                         </a>
                     </div>
                 </div>
-                <div class="flex-1 bg-white shadow p-10 rounded-lg m-5">
-                    <h1 class="text-xl font-medium">Grafik Pelanggaran</h1>
-                    <div id="main" class="my-10" style="width: 600px;height:400px;"></div>
-                </div>
+                {{-- <div class="flex-1 bg-white shadow p-10 rounded-lg m-5">
+                    <h1 class="text-xl font-medium">Statistik Pelanggaran</h1>
+                    @livewireStyles
+                        @livewire('statistic-component')
+                    @livewireScripts
+                </div> --}}
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    
-    <script type="text/javascript">
-      // Initialize the echarts instance based on the prepared dom
-      var myChart = echarts.init(document.getElementById('main'));
-
-      // Specify the configuration items and data for the chart
-      option = {
-        tooltip: {
-            trigger: 'item'
-        },
-        legend: {
-            top: '5%',
-            left: 'center'
-        },
-        series: [
-            {
-            name: 'Access From',
-            type: 'pie',
-            radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
-            itemStyle: {
-                borderRadius: 10,
-                borderColor: '#fff',
-                borderWidth: 2
-            },
-            label: {
-                show: false,
-                position: 'center'
-            },
-            labelLine: {
-                show: false
-            },
-            data: [
-                { value: 5, name: 'Jln Ahmad Yani' },
-                { value: 4, name: 'Direct' },
-                { value: 2, name: 'Email' },
-                { value: 1, name: 'Union Ads' },
-                { value: 6, name: 'Video Ads' }
-            ]
-            }
-        ]
-    };
-
-      // Display the chart using the configuration items and data just specified.
-      myChart.setOption(option);
-    </script>
     
     <script>
         var map = L.map('map').setView([-1.234266, 116.866195], 12);
@@ -102,17 +77,12 @@
             crossOrigin: true,
             zoomControl: false
         }).addTo(map);
-
-        @foreach($points as $point)
-            L.marker([{{$point->latitude}}, {{$point->longitude}}]).addTo(map); //.blindpopup
+        @foreach ($points as $point)
+            L.marker([{{$point->latitude}}, {{$point->longitude}}], {title: 'asd'}).addTo(map).bindPopup('<div class=\'text-center\'>'+{!!"'" . $point->name . "'"!!}+'</div>');
         @endforeach
-    
         
     </script>
 
-    <script>
-        
-    </script>
     @include("layouts.footer")
     @yield('script')
 </body>

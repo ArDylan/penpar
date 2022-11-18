@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Point;
+use App\Models\Location;
+use App\Models\PointImage;
 
 class HomeController extends Controller
 {
@@ -26,6 +28,8 @@ class HomeController extends Controller
     public function dashboard()
     {
         $points = Point::all();
-        return view('dashboard', compact("points"));
+        $location = Location::all()->count();
+        $violation = PointImage::where("created_at", ">=", date("Y-m-j 00:00:00"))->get()->count();
+        return view('dashboard', compact(["points", "location", "violation"]));
     }
 }

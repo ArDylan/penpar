@@ -1,13 +1,17 @@
 <div>
     {{-- Do your work, then step back. --}}
     <div class="flex mb-5">
-        <h1 class="text-xl flex-1 font-medium">{{$location->name}}</h1>
-        <select wire:model="point" name="point_id" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-36 p-2.5">
-            <option value="*">All</option>
-            @foreach ($camera_points as $camera)
-                <option value="{{$camera->id}}">{{$camera->name}}</option>
-            @endforeach
-        </select>
+        <div class="flex-1">
+            <a href="{{route("location.maps", [$location->id])}}"><h1 class="text-xl flex-1 font-medium">{{$location->name}} <i class="fa-solid fa-location-dot"></i></h1></a>
+        </div>
+        <div class="flex-shrink">
+            <select wire:model="point" name="point_id" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-36 p-2.5">
+                <option value="*">All</option>
+                @foreach ($camera_points as $camera)
+                    <option value="{{$camera->id}}">{{$camera->name}}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
     <div class="mb-5">
         <label class="text-md" for="">Date</label>
