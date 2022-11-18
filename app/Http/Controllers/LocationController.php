@@ -13,6 +13,11 @@ class LocationController extends Controller
         return view('location.index');
     }
 
+    public function maps(Location $location)
+    {
+        return view('location.maps', compact('location'));
+    }
+
     public function show(Request $request, Location $location)
     {
         $camera_points = Point::where('location_id', $location->id)->get();
@@ -27,7 +32,12 @@ class LocationController extends Controller
 
         $validatedData = $request->validate($validate);
 
-        $testimoni = Location::create($validatedData);
+        $location = Location::create($validatedData);
         return redirect('/location');
+    }
+
+    public function delete(Location $location){
+        $location->delete();
+        return back();
     }
 }

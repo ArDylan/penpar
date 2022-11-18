@@ -13,7 +13,7 @@
     <div class="mb-6">
         <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Nama Jalan</label>
         <select id="select-state" name="location_id" placeholder="Pick a state...">
-            <option value="">Select a state...</option>
+            <option value="">Select a street...</option>
             @foreach ($locations as $location)
                 <option value="{{$location->id}}">{{$location->name}}</option>
             @endforeach

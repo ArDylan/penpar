@@ -25,14 +25,23 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Auth::routes();
 
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::delete('/user/action/{user}', [UserController::class, 'delete'])->name('location.delete');
+
+
 Route::get('/location', [LocationController::class, 'index'])->name('location');
 Route::get('/location/{location}', [LocationController::class, 'show'])->name('location.show');
 Route::post('/location/store', [LocationController::class, 'store'])->name('location.store');
+Route::get('/location/{location}/maps', [LocationController::class, 'maps'])->name('location.maps');
+Route::delete('/location/action/{location}', [LocationController::class, 'delete'])->name('location.delete');
 
 
 Route::get('/point', [PointController::class, 'index'])->name('point');
-Route::get('/point/maps/{point}', [PointController::class, 'maps'])->name('point.maps');
+Route::get('/point/map/{point}', [PointController::class, 'map'])->name('point.map');
 Route::get('/point/create', [PointController::class, 'create'])->name('point.create');
 Route::post('/point/store', [PointController::class, 'store'])->name('point.store');
+Route::delete('/point/action/{point}', [PointController::class, 'delete'])->name('point.delete');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

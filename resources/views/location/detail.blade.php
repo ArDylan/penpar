@@ -4,6 +4,7 @@
 <div class="flex mb-5">
     <h1 class="text-xl flex-1 font-medium">{{$location->name}}</h1>
     <select name="point_id" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-36 p-2.5">
+        <option value="all">ALL</option>
         @foreach ($camera_points as $camera)
             <option value="{{$camera->id}}">{{$camera->name}}</option>
         @endforeach
@@ -35,7 +36,7 @@
                 <img class="w-full object-cover"
                     src="{{$image->images}}" alt="{{$camera->name}}" />
                 <div class="absolute top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-slate-50 opacity-0 group-hover:h-full group-hover:opacity-100 duration-200">
-                    <a class="text-[0.8rem] mt-5 px-8 py-2 rounded-full bg-yellow-400 hover:bg-yellow-600 duration-300" href="{{route('point.maps', ['point' => $camera->id])}}">Lokasi 
+                    <a class="text-[0.8rem] mt-5 px-8 py-2 rounded-full bg-yellow-400 hover:bg-yellow-600 duration-300" href="{{route('point.map', ['point' => $camera->id])}}">Lokasi 
                     {{-- <i class="fa-solid fa-download"></i> --}}
                     <i class="fa-solid fa-location-dot"></i>
                     </a>
