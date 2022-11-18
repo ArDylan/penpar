@@ -33,7 +33,7 @@
                 <img class="w-full object-cover h-40 rounded-t"
                     src="{{$image->images}}" alt="{{$camera->name}}" />
                 <div class="absolute top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-slate-50 opacity-0 group-hover:h-full group-hover:opacity-100 duration-200">
-                    <a class="text-[0.8rem] mt-5 px-8 py-2 rounded-full bg-yellow-400 hover:bg-yellow-600 duration-300" href="{{route('point.maps', ['point' => $camera->id])}}">{{$camera->name}} 
+                    <a class="text-[0.8rem] mt-5 px-8 py-2 rounded-full bg-yellow-400 hover:bg-yellow-600 duration-300" href="{{route('point.map', ['point' => $camera->id])}}">{{$camera->name}} 
                     {{-- <i class="fa-solid fa-download"></i> --}}
                     <i class="fa-solid fa-location-dot"></i>
                     </a>

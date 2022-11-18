@@ -14,7 +14,7 @@
             </a>
          </li>
           <li>
-             <a href="" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+             <a href="{{route('user')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <i class="fa-solid fa-users"></i>               
                <span class="ml-3">User management</span>
              </a>

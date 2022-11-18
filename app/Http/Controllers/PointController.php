@@ -13,9 +13,9 @@ class PointController extends Controller
         return view('point.index');
     }
 
-    public function maps(Point $point)
+    public function map(Point $point)
     {
-        return view('point.maps', compact('point'));
+        return view('point.map', compact('point'));
     }
 
     public function create()
@@ -36,7 +36,13 @@ class PointController extends Controller
 
         $validatedData = $request->validate($validate);
 
-        $testimoni = Point::create($validatedData);
+        $point = Point::create($validatedData);
         return redirect('/point');
+    }
+
+    
+    public function delete(Point $point){
+        $point->delete();
+        return back();
     }
 }

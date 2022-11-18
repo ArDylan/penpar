@@ -27,8 +27,7 @@
         zoomControl: false
     }).addTo(map);
 
-
-  L.marker([{{$point->latitude}}, {{$point->longitude}}]).addTo(map); //.blindpopup
+    L.marker([{{$point->latitude}}, {{$point->longitude}}], {title: 'asd'}).addTo(map).bindPopup('<div class=\'text-center\'>'+{!!"'" . $point->name . "'"!!}+'</div>');
 
 </script>
 
